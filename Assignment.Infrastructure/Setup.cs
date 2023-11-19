@@ -7,7 +7,7 @@ namespace Assignment.Infrastructure;
 
 public static class Setup
 {
-    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static void ConfigureInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IMeetingRepository, MeetingRepository>();

@@ -11,10 +11,12 @@ public class UserServiceTests
         var userRepositorySubstitute = Substitute.For<IUserRepository>();
         var userService = new UserService(userRepositorySubstitute);
 
-        var user = new User();
+        var username = "some-name";
+        var password = "some-password";
+        var passwordConfirmation = "some-password";
 
         // Act
-        await userService.RegisterAsync(user);
+        await userService.RegisterAsync(username, password, passwordConfirmation);
 
         // Assert
         await userRepositorySubstitute.Received(1).AddAsync(Arg.Any<User>());

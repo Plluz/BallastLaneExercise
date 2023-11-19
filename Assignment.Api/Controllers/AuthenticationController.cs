@@ -1,3 +1,4 @@
+using Assignment.Api.Input.Queries;
 using Assignment.Domain.Entities;
 
 namespace Assignment.Api.Controllers;
@@ -16,16 +17,16 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] string username, string password)
+    public async Task<IActionResult> Login([FromBody] LoginQuery loginQuery)
     {
         try
         {
-            var user = await _userService.LoginAsync(username, password);
+            var token = await _userService.LoginAsync(loginQuery.Username, loginQuery.Password);
 
-            if (user is null)
+            if (string.IsNullOrWhiteSpace(token))
                 return BadRequest();
 
-            return Ok();
+            return Ok(token);
         }
         catch (Exception e)
         {
@@ -35,11 +36,11 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] User user)
+    public async Task<IActionResult> Register([FromBody] RegisterQuery registerQuery)
     {
         try
         {
-            var created = await _userService.RegisterAsync(user);
+            var created = await _userService.RegisterAsync(registerQuery.Username, registerQuery.Password, registerQuery.PasswordConfirmation);
 
             if (!created)
                 return BadRequest();

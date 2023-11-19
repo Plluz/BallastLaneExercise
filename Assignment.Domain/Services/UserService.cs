@@ -1,4 +1,5 @@
-﻿using Assignment.Domain.Interfaces.Repositories;
+﻿using Assignment.Domain.Entities;
+using Assignment.Domain.Interfaces.Repositories;
 
 namespace Assignment.Domain.Services;
 
@@ -13,16 +14,36 @@ public class UserService : IUserService
 
     public async Task<User> GetByIdAsync(Guid userId)
     {
-        throw new NotImplementedException();
+        return await _userRepository.GetByIdAsync(userId);
     }
 
-    public async Task<User> LoginAsync(string username, string password)
+    public async Task<string> LoginAsync(string username, string password)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.GetByUsernameAsync(username);
+
+        if (user is null || user.Password != password)
+            return string.Empty;
+
+        return JwtService.GenerateToken(user);
     }
 
-    public async Task<bool> RegisterAsync(User user)
+    public async Task<bool> RegisterAsync(string username, string password, string passwordConfirm)
     {
-        throw new NotImplementedException();
+        if (password != passwordConfirm)
+            return false;
+
+        var found = await _userRepository.GetByUsernameAsync(username);
+        if (found is not null)
+        {
+            return false;
+        }
+
+        var user = new User
+        {
+            Username = username,
+            Password = password
+        };
+
+        return await _userRepository.AddAsync(user);
     }
 }

@@ -1,9 +1,11 @@
 using Assignment.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment.Api.Controllers;
 
 [ApiController]
 [Route("api/meetings")]
+[Authorize]
 public class MeetingController : ControllerBase
 {
     private readonly ILogger<MeetingController> _logger;
@@ -16,6 +18,7 @@ public class MeetingController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
         try
@@ -31,6 +34,7 @@ public class MeetingController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid id)
     {
         try

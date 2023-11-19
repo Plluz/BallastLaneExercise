@@ -3,6 +3,6 @@
 public interface IUserService
 {
     Task<User> GetByIdAsync(Guid userId);
-    Task<User> LoginAsync(string username, string password);
-    Task<bool> RegisterAsync(User user);
+    Task<string> LoginAsync(string username, string password);
+    Task<bool> RegisterAsync(string username, string password, string passwordConfirm);
 }
