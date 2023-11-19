@@ -3,7 +3,7 @@ using Assignment.Domain.Entities;
 namespace Assignment.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/authentication")]
 public class AuthenticationController : ControllerBase
 {
     private readonly ILogger<AuthenticationController> _logger;

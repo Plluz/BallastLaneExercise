@@ -15,7 +15,7 @@ public class MeetingRepository : IMeetingRepository
         throw new NotImplementedException();
     }
 
-    public async Task<List<Meeting>> GetAllAsync()
+    public async Task<IEnumerable<Meeting>> GetAllAsync()
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class MeetingRepository : IMeetingRepository
         throw new NotImplementedException();
     }
 
-    public async Task<bool> UpdateAsync(Meeting meeting)
+    public async Task<bool> UpdateAsync(Guid meetingId, Meeting meeting)
     {
         throw new NotImplementedException();
     }

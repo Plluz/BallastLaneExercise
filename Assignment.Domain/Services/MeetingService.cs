@@ -13,26 +13,26 @@ public class MeetingService : IMeetingService
 
     public async Task<bool> AddAsync(Meeting meeting)
     {
-        throw new NotImplementedException();
+        return await _meetingRepository.AddAsync(meeting);
     }
 
     public async Task<bool> DeleteAsync(Guid meetingId)
     {
-        throw new NotImplementedException();
+        return await _meetingRepository.DeleteAsync(meetingId);
     }
 
-    public async Task<List<Meeting>> GetAllAsync()
+    public async Task<IEnumerable<Meeting>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _meetingRepository.GetAllAsync();
     }
 
     public async Task<Meeting> GetByIdAsync(Guid meetingId)
     {
-        throw new NotImplementedException();
+        return await _meetingRepository.GetByIdAsync(meetingId);
     }
 
     public async Task<bool> UpdateAsync(Guid meetingId, Meeting meeting)
     {
-        throw new NotImplementedException();
+        return await _meetingRepository.UpdateAsync(meetingId, meeting);
     }
 }

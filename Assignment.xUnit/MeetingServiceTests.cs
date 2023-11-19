@@ -56,7 +56,7 @@ public class MeetingServiceTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(meetings.Count, result.Count);
+        Assert.Equal(meetings.Count, result.Count());
     }
 
     [Fact]
