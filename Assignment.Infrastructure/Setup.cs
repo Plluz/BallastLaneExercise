@@ -1,12 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Assignment.Domain.Interfaces.Repositories;
+using Assignment.Infrastructure.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Assignment.Infrastructure;
 
 public static class Setup
 {
-    public static void AddInfra(this IServiceCollection services, IConfiguration configuration)
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-
+        services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IMeetingRepository, MeetingRepository>();
     }
 }
