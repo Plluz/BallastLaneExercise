@@ -6,5 +6,5 @@ public interface IMeetingService
     Task<bool> DeleteAsync(Guid meetingId);
     Task<IEnumerable<Meeting>> GetAllAsync();
     Task<Meeting> GetByIdAsync(Guid meetingId);
-    Task<bool> UpdateAsync(Guid meetingId, Meeting meeting);
+    Task<bool> UpdateAsync(Meeting meeting);
 }

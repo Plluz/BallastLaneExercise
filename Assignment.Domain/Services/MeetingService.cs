@@ -1,4 +1,5 @@
-﻿using Assignment.Domain.Interfaces.Repositories;
+﻿using Assignment.Domain.Entities;
+using Assignment.Domain.Interfaces.Repositories;
 
 namespace Assignment.Domain.Services;
 
@@ -13,11 +14,22 @@ public class MeetingService : IMeetingService
 
     public async Task<bool> AddAsync(Meeting meeting)
     {
+        if (meeting.StartDate > meeting.EndDate)
+        {
+            return false;
+        }
+
         return await _meetingRepository.AddAsync(meeting);
     }
 
     public async Task<bool> DeleteAsync(Guid meetingId)
     {
+        var found = await _meetingRepository.GetByIdAsync(meetingId);
+        if (found is null)
+        {
+            return false;
+        }
+
         return await _meetingRepository.DeleteAsync(meetingId);
     }
 
@@ -31,8 +43,19 @@ public class MeetingService : IMeetingService
         return await _meetingRepository.GetByIdAsync(meetingId);
     }
 
-    public async Task<bool> UpdateAsync(Guid meetingId, Meeting meeting)
+    public async Task<bool> UpdateAsync(Meeting meeting)
     {
-        return await _meetingRepository.UpdateAsync(meetingId, meeting);
+        if (meeting.StartDate > meeting.EndDate)
+        {
+            return false;
+        }
+
+        var found = await _meetingRepository.GetByIdAsync(meeting.Id);
+        if (found is null)
+        {
+            return false;
+        }
+
+        return await _meetingRepository.UpdateAsync(meeting);
     }
 }

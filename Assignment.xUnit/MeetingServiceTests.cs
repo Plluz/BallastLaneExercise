@@ -70,10 +70,10 @@ public class MeetingServiceTests
         var meeting = new Meeting();
 
         // Act
-        await meetingService.UpdateAsync(meetingId, meeting);
+        await meetingService.UpdateAsync(meeting);
 
         // Assert
-        await meetingRepositorySubstitute.Received(1).UpdateAsync(Arg.Any<Meeting>());
+        await meetingRepositorySubstitute.Received(1).UpdateAsync( Arg.Any<Meeting>());
     }
 
     [Fact]

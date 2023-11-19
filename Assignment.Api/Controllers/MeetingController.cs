@@ -68,12 +68,12 @@ public class MeetingController : ControllerBase
         }
     }
 
-    [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] Meeting updatedMeeting)
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] Meeting updatedMeeting)
     {
         try
         {
-            var updated = await _meetingService.UpdateAsync(id, updatedMeeting);
+            var updated = await _meetingService.UpdateAsync(updatedMeeting);
 
             if (!updated)
                 return BadRequest();
@@ -95,7 +95,7 @@ public class MeetingController : ControllerBase
             var isDeleted = await _meetingService.DeleteAsync(id);
 
             if (!isDeleted)
-                return BadRequest();
+                return NotFound();
 
             return NoContent();
         }
