@@ -1,6 +1,4 @@
-﻿using Assignment.Domain.Interfaces.Repositories;
-
-namespace Assignment.xUnit;
+﻿namespace Assignment.xUnit;
 
 public class UserServiceTests
 {

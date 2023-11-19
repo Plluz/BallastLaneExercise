@@ -1,5 +1,4 @@
-﻿using Assignment.Domain.Entities;
-using Assignment.Domain.Interfaces.Repositories;
+﻿using Assignment.Domain.Interfaces.Repositories;
 
 namespace Assignment.Domain.Services;
 
