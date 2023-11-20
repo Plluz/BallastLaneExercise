@@ -32,7 +32,7 @@ Before you begin, ensure you have the following tools installed on your machine:
 
 First, clone the repository:
 ```bash
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/Plluz/BallastLaneExercise.git
 cd your-repository
 ```
 
