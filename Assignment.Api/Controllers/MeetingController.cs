@@ -31,16 +31,8 @@ public class MeetingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetAll()
     {
-        try
-        {
-            var result = await _meetingService.GetAllAsync();
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Internal error message here");
-            return StatusCode(500, "An error occurred while retrieving meetings.");
-        }
+        var result = await _meetingService.GetAllAsync();
+        return Ok(result);
     }
 
     /// <summary>
@@ -60,20 +52,12 @@ public class MeetingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetById(Guid id)
     {
-        try
-        {
-            var meeting = await _meetingService.GetByIdAsync(id);
+        var meeting = await _meetingService.GetByIdAsync(id);
 
-            if (meeting == null)
-                return NotFound();
+        if (meeting == null)
+            return NotFound();
 
-            return Ok(meeting);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Internal error message here");
-            return StatusCode(500, "An error occurred while retrieving the meeting.");
-        }
+        return Ok(meeting);
     }
 
     /// <summary>
@@ -90,20 +74,12 @@ public class MeetingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Add([FromBody] Meeting meeting)
     {
-        try
-        {
-            var created = await _meetingService.AddAsync(meeting);
+        var created = await _meetingService.AddAsync(meeting);
             
-            if (!created)
-                return BadRequest();
+        if (!created)
+            return BadRequest();
 
-            return Created();
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Internal error message here");
-            return StatusCode(500, "An error occurred while creating the meeting.");
-        }
+        return Created();
     }
 
     /// <summary>
@@ -120,20 +96,12 @@ public class MeetingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Update([FromBody] Meeting updatedMeeting)
     {
-        try
-        {
-            var updated = await _meetingService.UpdateAsync(updatedMeeting);
+        var updated = await _meetingService.UpdateAsync(updatedMeeting);
 
-            if (!updated)
-                return BadRequest();
+        if (!updated)
+            return BadRequest();
 
-            return Ok(updatedMeeting);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Internal error message here");
-            return StatusCode(500, "An error occurred while updating the meeting.");
-        }
+        return Ok(updatedMeeting);
     }
 
     /// <summary>
@@ -152,19 +120,11 @@ public class MeetingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete(Guid id)
     {
-        try
-        {
-            var isDeleted = await _meetingService.DeleteAsync(id);
+        var isDeleted = await _meetingService.DeleteAsync(id);
 
-            if (!isDeleted)
-                return NotFound();
+        if (!isDeleted)
+            return NotFound();
 
-            return NoContent();
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Internal error message here");
-            return StatusCode(500, "An error occurred while deleting the meeting.");
-        }
+        return NoContent();
     }
 }

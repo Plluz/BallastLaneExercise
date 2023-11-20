@@ -29,20 +29,12 @@ public class AuthenticationController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Login([FromBody] LoginQuery loginQuery)
     {
-        try
-        {
-            var token = await _userService.LoginAsync(loginQuery.Username, loginQuery.Password);
+        var token = await _userService.LoginAsync(loginQuery.Username, loginQuery.Password);
 
-            if (string.IsNullOrWhiteSpace(token))
-                return BadRequest();
+        if (string.IsNullOrWhiteSpace(token))
+            return BadRequest();
 
-            return Ok(token);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Internal error message here");
-            return StatusCode(500, "An error occurred while signing in.");
-        }
+        return Ok(token);
     }
 
     /// <summary>
@@ -59,19 +51,11 @@ public class AuthenticationController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Register([FromBody] RegisterQuery registerQuery)
     {
-        try
-        {
-            var created = await _userService.RegisterAsync(registerQuery.Username, registerQuery.Password, registerQuery.PasswordConfirmation);
+        var created = await _userService.RegisterAsync(registerQuery.Username, registerQuery.Password, registerQuery.PasswordConfirmation);
 
-            if (!created)
-                return BadRequest();
+        if (!created)
+            return BadRequest();
 
-            return Created();
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Internal error message here");
-            return StatusCode(500, "An error occurred while signing up.");
-        }
+        return Created();
     }
 }

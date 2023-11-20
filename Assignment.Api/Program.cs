@@ -4,7 +4,11 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<GlobalExceptionFilterAttribute>();
+});
+builder.Services.AddLogging();
 builder.Services.ConfigureDomain();
 builder.Services.ConfigureInfrastructure(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
