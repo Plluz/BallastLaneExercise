@@ -26,7 +26,8 @@ Access the [Postman Collection (TODO)](#) and [Postman Environment file (TODO)](
 To run the application, navigate to the root folder (BallastLaneExercise folder) and execute the following command in the terminal:
 
 ```bash
-docker-compose up```
+docker-compose up
+```
 
 This will start the Application and PostgreSQL.
 Once the container is running, you can access the Swagger documentation at https://localhost:8081/swagger (or the Postman provided above) to test the API endpoints.
