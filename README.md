@@ -1,6 +1,8 @@
-collet# BallastLane Technical Assignment
+# BallastLane Technical Assignment
 
 This repository contains the solution to the technical assignment provided by BallastLane as part of the Software Engineer hiring process.
+
+[![.NET](https://github.com/Plluz/BallastLaneExercise/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/Plluz/BallastLaneExercise/actions/workflows/dotnet.yml)
 
 ## Tech Overview
 
