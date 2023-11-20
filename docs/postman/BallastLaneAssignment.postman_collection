@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "f4c8b54c-afbe-4dd8-a564-012e50f9ee3c",
+		"name": "BallastLane Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19677130"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authentication/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"someone\",\r\n  \"password\": \"secret-password-123\",\r\n  \"passwordConfirmation\": \"secret-password-123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authentication/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authentication",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Meetings",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/meetings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"meetings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/meetings/79c32f2a-2928-4291-84f0-9273eea784a4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"meetings",
+								"79c32f2a-2928-4291-84f0-9273eea784a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create (authenticated)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Test 3453455345\",\r\n  \"startDate\": \"2023-11-19T16:00:00.000Z\",\r\n  \"endDate\": \"2023-11-19T17:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/meetings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"meetings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update (authenticated)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"33ddcc91-df6f-4203-9deb-7a1377f2c059\",\r\n  \"title\": \"BallastLane interview edit\",\r\n  \"startDate\": \"2023-11-19T16:00:00.000Z\",\r\n  \"endDate\": \"2023-11-19T17:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/meetings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"meetings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (authenticated)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"33ddcc91-df6f-4203-9deb-7a1377f2c059\",\r\n  \"title\": \"BallastLane interview edit\",\r\n  \"startDate\": \"2023-11-19T16:00:00.000Z\",\r\n  \"endDate\": \"2023-11-19T17:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/meetings/79c32f2a-2928-4291-84f0-9273eea784a4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"meetings",
+								"79c32f2a-2928-4291-84f0-9273eea784a4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://localhost:32810"
+		},
+		{
+			"key": "bearer_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmJmIjoxNzAwNDI3MjkzLCJleHAiOjE3MDA0MzA4OTMsImlhdCI6MTcwMDQyNzI5M30.XmQyIwbvGcgyz5a2VzY-n_AlGMg9uEuIjYho7oyPykA"
+		}
+	]
+}
