@@ -1,4 +1,4 @@
-# BallastLane Technical Assignment
+collet# BallastLane Technical Assignment
 
 This repository contains the solution to the technical assignment provided by BallastLane as part of the Software Engineer hiring process.
 
@@ -20,7 +20,7 @@ This repository contains the solution to the technical assignment provided by Ba
 
 ## Postman Files
 
-Access the [Postman Collection](docs/postman/collection.json) and [Postman Environment file](docs/postman/environment.json) to explore and test the API endpoints.
+Access the [Postman Collection](docs/postman/BallastLaneAssignment.postman_collection) and [Postman Environment file](docs/postman/BallastLaneAssignment.postman_environment) to explore and test the API endpoints.
 
 ## Run locally
 
