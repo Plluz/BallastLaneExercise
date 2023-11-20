@@ -1,4 +1,5 @@
 ﻿using Assignment.Domain.Interfaces.Repositories;
+using Assignment.Infrastructure.Data;
 using Assignment.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,5 +12,8 @@ public static class Setup
     {
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IMeetingRepository, MeetingRepository>();
+
+        services.AddSingleton(new DatabaseSeeder(configuration));
+        services.AddHostedService<DatabaseSeeder>();
     }
 }

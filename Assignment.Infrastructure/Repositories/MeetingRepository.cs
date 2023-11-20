@@ -17,13 +17,13 @@ public class MeetingRepository : IMeetingRepository
     public async Task<bool> AddAsync(Meeting meeting)
     {
         using NpgsqlConnection connection = new(_connectionString);
-        
+
         await connection.OpenAsync();
 
         string insertQuery = "INSERT INTO Meetings (Id, Title, StartDate, EndDate) VALUES (@id, @title, @startDate, @endDate)";
 
         using NpgsqlCommand command = new(insertQuery, connection);
-        
+
         command.Parameters.AddWithValue("@id", Guid.NewGuid());
         command.Parameters.AddWithValue("@title", meeting.Title);
         command.Parameters.AddWithValue("@startDate", meeting.StartDate);
