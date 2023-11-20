@@ -1,11 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment.Infrastructure.Data;
 
@@ -13,9 +8,9 @@ public class DatabaseSeeder : IHostedService
 {
     private readonly string _connectionString;
 
-    public DatabaseSeeder(IConfiguration configuration)
+    public DatabaseSeeder(IOptions<DatabaseOptions> databaseOptions)
     {
-        _connectionString = (configuration ?? throw new ArgumentNullException(nameof(configuration))).GetConnectionString("AssignmentConnection");
+        _connectionString = databaseOptions.Value.AssignmentConnection;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)

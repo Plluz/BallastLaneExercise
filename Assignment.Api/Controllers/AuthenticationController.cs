@@ -1,5 +1,4 @@
 using Assignment.Api.Input.Queries;
-using System.Net;
 
 namespace Assignment.Api.Controllers;
 

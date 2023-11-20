@@ -1,6 +1,7 @@
 ﻿using Assignment.Domain.Entities;
 using Assignment.Domain.Interfaces.Repositories;
-using Microsoft.Extensions.Configuration;
+using Assignment.Infrastructure.Data;
+using Microsoft.Extensions.Options;
 using Npgsql;
 
 namespace Assignment.Infrastructure.Repositories;
@@ -9,9 +10,9 @@ public class UserRepository : IUserRepository
 {
     private readonly string _connectionString;
 
-    public UserRepository(IConfiguration configuration)
+    public UserRepository(IOptions<DatabaseOptions> databaseOptions)
     {
-        _connectionString = (configuration ?? throw new ArgumentNullException(nameof(configuration))).GetConnectionString("AssignmentConnection");
+        _connectionString = databaseOptions.Value.AssignmentConnection;
     }
 
     public async Task<bool> AddAsync(User user)

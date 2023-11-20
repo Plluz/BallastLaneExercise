@@ -3,6 +3,7 @@ using Assignment.Infrastructure.Data;
 using Assignment.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Assignment.Infrastructure;
 
@@ -13,7 +14,8 @@ public static class Setup
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IMeetingRepository, MeetingRepository>();
 
-        services.AddSingleton(new DatabaseSeeder(configuration));
+        services.AddSingleton<IHostedService, DatabaseSeeder>();
         services.AddHostedService<DatabaseSeeder>();
+        services.Configure<DatabaseOptions>(configuration.GetSection("ConnectionStrings"));
     }
 }
