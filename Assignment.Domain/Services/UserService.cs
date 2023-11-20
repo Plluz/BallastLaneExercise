@@ -5,10 +5,12 @@ namespace Assignment.Domain.Services;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
+    private readonly IJwtService _jwtService;
 
-    public UserService(IUserRepository userRepository)
+    public UserService(IUserRepository userRepository, IJwtService jwtService)
     {
         _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+        _jwtService = jwtService;
     }
 
     public async Task<User> GetByIdAsync(Guid userId)
@@ -23,7 +25,7 @@ public class UserService : IUserService
         if (user is null || user.Password != password)
             return string.Empty;
 
-        return JwtService.GenerateToken(user);
+        return _jwtService.GenerateToken(user);
     }
 
     public async Task<bool> RegisterAsync(string username, string password, string passwordConfirm)

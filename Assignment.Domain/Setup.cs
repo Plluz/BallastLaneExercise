@@ -8,5 +8,6 @@ public static class Setup
     {
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<IMeetingService, MeetingService>();
+        services.AddTransient<IJwtService, JwtService>();
     }
 }

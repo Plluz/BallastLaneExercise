@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Assignment.Domain.Services;
 
-public static class JwtService
+public class JwtService : IJwtService
 {
-    public static string GenerateToken(User user)
+    public string GenerateToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes("some-long-256-bits-secret-key-should-go-here");
