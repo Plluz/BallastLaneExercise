@@ -4,18 +4,18 @@ This repository contains the solution to the technical assignment provided by Ba
 
 ## Tech Overview
 
-- **Clean Architecture:** to ensure separation of concerns, maintainability, and scalability.
-- **.NET 8:** harnessing the latest features and improvements in the framework.
-- **Docker:** containerized the Web API for portability and easy deployment.
-- **PostgreSQL:** the database to store and manage data.
-- **ADO.NET:** for database connectivity within the application.
-- **JWT Tokens:** for authentication.
-- **Postman:** for testing API endpoints.
+- **Clean Architecture:** To ensure separation of concerns, maintainability, and scalability.
+- **.NET 8:** Harnessing the latest features and improvements in the framework.
+- **Docker:** Containerized the Web API for portability and easy deployment.
+- **PostgreSQL:** The database to store and manage data.
+- **ADO.NET:** For database connectivity within the application.
+- **JWT Tokens:** To help with authentication.
+- **Postman:** For testing API endpoints.
 
 ## User Story and Thought Process
 
 - Check out a [simulated user story (TODO)](#) that provides a narrative overview of the project.
-- Additionally, explore a [quick presentation (TODO)](#) to gain insights into the technical aspects and design decisions made during development.
+- Additionally, explore a [quick presentation (TODO)](#) for technical insights and design decisions made during development.
 
 ## Postman Files
 
@@ -26,4 +26,9 @@ Access the [Postman Collection (TODO)](#) and [Postman Environment file (TODO)](
 To run the application, navigate to the root folder (BallastLaneExercise folder) and execute the following command in the terminal:
 
 ```bash
-docker-compose up
+docker-compose up```
+
+This will start the Application and PostgreSQL.
+Once the container is running, you can access the Swagger documentation at https://localhost:8081/swagger (or the Postman provided above) to test the API endpoints.
+
+Ports used: 8080/8081 for HTTP/HTTPS and 5432 for Postgres
