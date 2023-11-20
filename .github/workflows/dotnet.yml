@@ -21,6 +21,6 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore "./Assignment.Api.csproj"
+      run: dotnet restore "./Assignment.Api/./Assignment.Api.csproj"
     - name: Build
-      run: dotnet build "./Assignment.Api.csproj" --no-restore
+      run: dotnet build "./Assignment.Api/./Assignment.Api.csproj" --no-restore
