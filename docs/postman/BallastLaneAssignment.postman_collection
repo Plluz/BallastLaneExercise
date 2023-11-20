@@ -225,7 +225,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "https://localhost:32810"
+			"value": "https://localhost:8081"
 		},
 		{
 			"key": "bearer_token",
