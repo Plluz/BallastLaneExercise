@@ -25,9 +25,18 @@ This repository contains the solution to the technical assignment provided by Ba
 Access the [Postman Collection](docs/postman/BallastLaneAssignment.postman_collection) and [Postman Environment file](docs/postman/BallastLaneAssignment.postman_environment) to explore and test the API endpoints.
 
 ## Run locally
+Before you begin, ensure you have the following tools installed on your machine:
 
-- Docker required. Navigate to the root folder (BallastLaneExercise folder) and execute the following command in the terminal:
+- [Git](https://git-scm.com/downloads)
+- [Docker](https://www.docker.com/get-started)
 
+First, clone the repository:
+```bash
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
+```
+
+Then, while in the root folder (BallastLaneExercise), execute the following command in the terminal:
 ```bash
 docker-compose up
 ```
