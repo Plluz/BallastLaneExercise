@@ -1,58 +1,96 @@
-﻿namespace Assignment.xUnit;
+﻿using Assignment.Domain.Interfaces.Services;
+
+namespace Assignment.xUnit;
 
 public class UserServiceTests
 {
-    [Fact]
-    public async Task RegisterUser_ShouldAddUserToRepository()
+    private readonly IUserRepository _userRepository;
+    private readonly IJwtService _jwtService;
+    private readonly UserService _userService;
+
+    public UserServiceTests()
+    {
+        _userRepository = Substitute.For<IUserRepository>();
+        _jwtService = Substitute.For<IJwtService>();
+        _userService = new UserService(_userRepository, _jwtService);
+    }
+
+    [Theory]
+    [InlineData("username", "validPassword1", "fakeToken1")]
+    [InlineData("Bilbo Baggins", "validPassword2", "fakeToken2")]
+    [InlineData("xXSuper__Gamer__99Xx", "validPassword3", "fakeToken3")]
+    public async Task LoginAsync_ValidCredentials_ReturnsToken(string username, string password, string expectedToken)
     {
         // Arrange
-        var userRepositorySubstitute = Substitute.For<IUserRepository>();
-        var userService = new UserService(userRepositorySubstitute);
-
-        var username = "some-name";
-        var password = "some-password";
-        var passwordConfirmation = "some-password";
+        var user = new User { Username = username, Password = password };
+        _userRepository.GetByUsernameAsync(username).Returns(user);
+        _jwtService.GenerateToken(user).Returns(expectedToken);
 
         // Act
-        await userService.RegisterAsync(username, password, passwordConfirmation);
+        var result = await _userService.LoginAsync(username, password);
 
         // Assert
-        await userRepositorySubstitute.Received(1).AddAsync(Arg.Any<User>());
+        Assert.Equal(expectedToken, result);
     }
 
     [Fact]
-    public async Task GetUserById_ShouldReturnUserFromRepository()
+    public async Task LoginAsync_InvalidCredentials_ReturnsEmptyString()
     {
         // Arrange
-        var userRepositorySubstitute = Substitute.For<IUserRepository>();
-        var userService = new UserService(userRepositorySubstitute);
-
-        var userId = Guid.NewGuid();
-        userRepositorySubstitute.GetByIdAsync(userId).Returns(new User());
+        const string username = "testUser";
+        const string password = "password";
+        _userRepository.GetByUsernameAsync(username).Returns((User)null);
 
         // Act
-        var result = await userService.GetByIdAsync(userId);
+        var result = await _userService.LoginAsync(username, password);
 
         // Assert
-        Assert.NotNull(result);
+        Assert.Equal(string.Empty, result);
     }
 
     [Fact]
-    public async Task LoginUser_ShouldAuthenticateUser()
+    public async Task RegisterAsync_ValidRegistration_ReturnsTrue()
     {
         // Arrange
-        var userRepositorySubstitute = Substitute.For<IUserRepository>();
-        var userService = new UserService(userRepositorySubstitute);
-
-        var username = "user";
-        var password = "password";
-
-        userRepositorySubstitute.GetByUsernameAsync(username).Returns(new User());
+        const string username = "newUser";
+        const string password = "password";
+        const string passwordConfirm = "password";
+        _userRepository.GetByUsernameAsync(username).Returns((User)null);
+        _userRepository.AddAsync(Arg.Any<User>()).Returns(true);
 
         // Act
-        var result = await userService.LoginAsync(username, password);
+        var result = await _userService.RegisterAsync(username, password, passwordConfirm);
 
         // Assert
-        Assert.NotNull(result);
+        Assert.True(result);
+    }
+
+    [Theory]
+    [InlineData("user1", "password", "PASSWORD")]
+    [InlineData("user2", "Different", "NotEqual")]
+    [InlineData("user3", "12345678", "1234567")]
+    public async Task RegisterAsync_PasswordMismatch_ReturnsFalse(string username, string password, string passwordConfirm)
+    {
+        // Act
+        var result = await _userService.RegisterAsync(username, password, passwordConfirm);
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public async Task RegisterAsync_ExistingUser_ReturnsFalse()
+    {
+        // Arrange
+        const string username = "existingUser";
+        const string password = "password";
+        const string passwordConfirm = "password";
+        _userRepository.GetByUsernameAsync(username).Returns(new User());
+
+        // Act
+        var result = await _userService.RegisterAsync(username, password, passwordConfirm);
+
+        // Assert
+        Assert.False(result);
     }
 }
