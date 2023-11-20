@@ -31,7 +31,9 @@ docker-compose up
 ```
 
 This will start the Application and PostgreSQL containers like in the image below.
+
 ![Image](docs/containers.jpg)
+
 Once the containers are running, you can access the Swagger at https://localhost:8081/swagger (or the Postman provided above).
 
 Ports used: 8080/8081 for HTTP/HTTPS and 5432 for Postgres
