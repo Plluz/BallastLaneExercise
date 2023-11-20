@@ -5,11 +5,6 @@ CREATE TABLE IF NOT EXISTS Users (
     Password VARCHAR(64) NOT NULL
 );
 
--- Insert seed data for Users
-INSERT INTO Users (Id, Username, Password) VALUES
-    (gen_random_uuid (), 'admin', 'password');
-
-
 -- Create Meetings table
 CREATE TABLE IF NOT EXISTS Meetings (
     Id UUID PRIMARY KEY,
@@ -17,6 +12,10 @@ CREATE TABLE IF NOT EXISTS Meetings (
     StartDate TIMESTAMP NOT NULL,
     EndDate TIMESTAMP NOT NULL
 );
+
+-- Insert seed data for Users
+INSERT INTO Users (Id, Username, Password) VALUES
+    (gen_random_uuid (), 'admin', 'password');
 
 -- Insert seed data for Meetings
 INSERT INTO Meetings (Id, Title, StartDate, EndDate) VALUES

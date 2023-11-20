@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.Api", "Assignment.Api\Assignment.Api.csproj", "{DDF62C9F-4632-4088-BF2F-445783D869B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.Api", "Assignment.Api\Assignment.Api.csproj", "{DDF62C9F-4632-4088-BF2F-445783D869B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.Domain", "Assignment.Domain\Assignment.Domain.csproj", "{A0294844-9C1E-4D3E-AA3A-3C1CDA28F52B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.Domain", "Assignment.Domain\Assignment.Domain.csproj", "{A0294844-9C1E-4D3E-AA3A-3C1CDA28F52B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.Infrastructure", "Assignment.Infrastructure\Assignment.Infrastructure.csproj", "{AA30F177-7B64-479B-9748-2201EC0730BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.Infrastructure", "Assignment.Infrastructure\Assignment.Infrastructure.csproj", "{AA30F177-7B64-479B-9748-2201EC0730BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.xUnit", "Assignment.xUnit\Assignment.xUnit.csproj", "{224D6AD3-DF0C-41A5-A053-9372BBBE1265}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.xUnit", "Assignment.xUnit\Assignment.xUnit.csproj", "{224D6AD3-DF0C-41A5-A053-9372BBBE1265}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{92439FE8-4DE0-4F17-98BD-80507E231640}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A0E8D459-2887-4B05-82F9-77CB76E343D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,10 @@ Global
 		{224D6AD3-DF0C-41A5-A053-9372BBBE1265}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{224D6AD3-DF0C-41A5-A053-9372BBBE1265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{224D6AD3-DF0C-41A5-A053-9372BBBE1265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E8D459-2887-4B05-82F9-77CB76E343D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E8D459-2887-4B05-82F9-77CB76E343D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E8D459-2887-4B05-82F9-77CB76E343D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E8D459-2887-4B05-82F9-77CB76E343D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
