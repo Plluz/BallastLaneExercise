@@ -1,1 +1,23 @@
-thought process goes here
+Here is my thought process during the development of the Technical Assignment. It might feel like a rant, it might feel like a speech, but I liked writing it.
+
+----------------------------------
+
+I've started with a quick spike task to explore the project structure, dependencies (like, how should I proceed without Entity Framework and what framework to use for tests), setting up the User Story with some tasks and initial Docker configuration.
+
+So I moved on to the actual project setup (using Visual Studio and git), ensuring a clean .NET project with organized folders. I opted for three separated projects for Api, Domain and Infrastructure since it helps "forcing" the team to actually depend on the abstraction of a service for example. The project can be easily configured to run within a Docker container, but I was really struggling to run the application AND the postgres in a docker-compose. So what I did was jump to all the code implementation, running a Postgres container manually for the moment to come back to the docker compose part after everything else was ready.
+
+With the project skeleton done, I initiated TDD by writing some simple tests for user registration, login, and basic CRUD operations for Meetings. With some basic tests written, I shifted focus to the actual CRUD implementation for the Meeting entity. Then I implemented mocked methods for the Get, GetById, Add, Update, and Delete operations.
+
+Since the do-everything-for-you ORMs like Entity Framework were not allowed, I've decided to use ADO.NET for the database connection. It was my first time using it, and it's interesting to notice how much Entity Framework usually helps... I really missed it. I've implemented the CRUD operations on the actual database, so I was able to un-mock all the requests and get real data.
+
+At that moment I had fixed some tests, but they were already too shallow for the implementation. I've decided to work on the authentication with JWTs and maybe go back to the Docker compose before updating the tests, adding more asserts and adding edge cases. Yes, the password is saved plain-text in the database... I didn't worry about it since it's a technical assignment so I focused on generating the JWT. In a real project I imagine I wouldn't reinvent the wheel, so I would probably use OAuth0 or some other known tool. Left the GetAllMeetings and GetMeetingById public methods, while the Create, Update and Delete started requiring authentication now (it's one of the requirements).
+
+Tackled Docker configuration challenges to ensure both the PostgreSQL container and the API start together seamlessly (Finally. My revenge! It works like a charm). Then I automated the creation and seeding of Users and Meetings tables turning the DatabaseSeeder into a HostedService and executing it when the application starts.
+
+In the final stretch, revisited and refined existing tests, ensuring comprehensive coverage for edge cases. Added more tests to handle scenarios like meeting EndDate > StartDate, duplicate username registration, login with incorrect passwords, etc. Strengthened the test suite with additional assertions.
+
+One of the last things I did was to enhance the CRUD functionality with meaningful HTTP parameters, responses, and status codes for a user-friendly API.
+
+----------------------------------
+
+Finally I wrapped up the technical assignment by updating the documentation, including this thought process and a user story, all neatly incorporated into the README file. Overall, a nice technical assignment with a focus on foundational setup, functionality, and thorough testing. Took me about 11 hours because some times I get too excited on details. Like this thought process document. It didn't need to be that long. But it is. Thank you for reading.

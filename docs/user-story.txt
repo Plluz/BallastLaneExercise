@@ -1,1 +1,64 @@
-user story goes here
+[USER STORY]
+
+Description: As a software engineer tasked with a Technical Assignment, I want to establish a well-structured and functional project that adheres to clean architecture principles, implements essential CRUD operations, and employs secure user authentication. This project should also include comprehensive test coverage and Docker integration for efficient deployment.
+Story points: 13
+
+[TASKS]
+Name: Estimated | Executed
+
+Spike: 1h00 | 0h30
+
+	✅ Conduct a spike task to explore project structure and dependencies
+	✅ Initial Docker configuration
+	✅ Determine the approach for database operations without Entity Framework / Dapper
+
+Project Setup: 1h30 | 3h00 🟥-> The docker compose really destroyed me here
+
+	✅ Organize the project into separate Api, Domain, and Infrastructure projects
+	✅ Configure the project to run within a Docker container
+	✅ [Bugs regarding issues trying to run the application and PostgreSQL in Docker]
+
+Test-Driven Development (TDD): 1h30 | 1h00
+
+	✅ Initiate TDD by writing tests for user registration, login, and basic CRUD operations for Meetings
+		✅ Meetings - CRUD
+		✅ Authentication - Register
+		✅ Authentication - Login
+	✅ Implement mocked methods for all operations
+		✅ Meetings - CRUD
+		✅ Authentication - Register
+		✅ Authentication - Login
+
+Database Connection with ADO.NET: 2h00 | 2h30 🟨 -> First time dealing with it, took a little bit more than expected
+
+	✅ Use ADO.NET for the database connection, set configuration
+	✅ Implement CRUD operations on the actual database
+		✅ Meetings - CRUD
+		✅ Authentication - Register
+		✅ Authentication - Login
+
+Authentication with JWTs: 1h00 | 1h00
+
+	✅ Implement JWT-based authentication.
+	✅ Update methods to accommodate authentication requirements
+
+Docker Configuration and Seeding: 2h00 |2h00
+
+	✅ Address Docker configuration challenges for seamless integration of PostgreSQL and the API
+	✅ [Bugs regarding docker-compose] 
+	✅ Automate the creation and seeding of Users and Meetings tables using a HostedService
+
+Test Suite Enhancement: 1h00 | 1h00
+
+	✅ Strengthen the test suite with additional assertions
+	✅ Revisit and refine existing tests, ensuring comprehensive coverage for edge cases
+
+API Functionality and Documentation: : 1h00 | 2h00 🟨 -> Looks like I really wanted it to look good...
+
+	✅ Enhance CRUD functionality
+		✅ Add HTTP parameters and XML comments
+		✅ responses and expected status codes
+	✅ Update the project documentation (README), incorporating:
+		✅ General information and how to run locally
+		✅ A detailed thought process
+		✅ This user story
