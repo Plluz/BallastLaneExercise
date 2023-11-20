@@ -17,8 +17,18 @@ public class MeetingController : ControllerBase
         _meetingService = meetingService ?? throw new ArgumentNullException(nameof(meetingService));
     }
 
+    /// <summary>
+    /// Retrieves all meetings.
+    /// </summary>
+    /// <returns>Returns a collection of all meetings.</returns>
+    /// <response code="200">Returns the collection of meetings.</response>
+    /// <response code="400">If there's an issue with the request.</response>
+    /// <response code="500">If an unexpected error occurs.</response>
     [HttpGet]
     [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Meeting>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetAll()
     {
         try
@@ -33,8 +43,21 @@ public class MeetingController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific meeting by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the meeting to retrieve.</param>
+    /// <returns>Returns the meeting with the specified ID.</returns>
+    /// <response code="200">Returns the requested meeting.</response>
+    /// <response code="400">If there's an issue with the request.</response>
+    /// <response code="404">If the meeting with the specified ID is not found.</response>
+    /// <response code="500">If an unexpected error occurs.</response>
     [HttpGet("{id:guid}")]
     [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Meeting))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetById(Guid id)
     {
         try
@@ -53,7 +76,18 @@ public class MeetingController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Adds a new meeting.
+    /// </summary>
+    /// <param name="meeting">The meeting object to add.</param>
+    /// <returns>Returns a response indicating success or failure.</returns>
+    /// <response code="201">Indicates successful creation of the meeting.</response>
+    /// <response code="400">If there's an issue with the request or the meeting couldn't be created.</response>
+    /// <response code="500">If an unexpected error occurs.</response>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Add([FromBody] Meeting meeting)
     {
         try
@@ -72,7 +106,18 @@ public class MeetingController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Updates an existing meeting.
+    /// </summary>
+    /// <param name="updatedMeeting">The updated meeting object.</param>
+    /// <returns>Returns the updated meeting object.</returns>
+    /// <response code="200">Indicates successful update of the meeting.</response>
+    /// <response code="400">If there's an issue with the request or the meeting couldn't be updated.</response>
+    /// <response code="500">If an unexpected error occurs.</response>
     [HttpPut]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Meeting))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Update([FromBody] Meeting updatedMeeting)
     {
         try
@@ -91,7 +136,20 @@ public class MeetingController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Deletes a meeting by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the meeting to delete.</param>
+    /// <returns>Returns a response indicating success or failure.</returns>
+    /// <response code="204">Indicates successful deletion of the meeting.</response>
+    /// <response code="400">If there's an issue with the request or the meeting couldn't be deleted.</response>
+    /// <response code="404">If the meeting with the specified ID is not found.</response>
+    /// <response code="500">If an unexpected error occurs.</response>
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Delete(Guid id)
     {
         try
