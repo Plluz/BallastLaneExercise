@@ -4,13 +4,15 @@ networks:
   assignment-network:
     driver: bridge
 
+name: assignment-containers
 services:
   assignment.api:
     container_name: assignment-api
     image: ${DOCKER_REGISTRY-}assignmentapi
+    environment:
+      - ASPNETCORE_HTTP_PORTS=80
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "80:80"
     build:
       context: .
       dockerfile: Assignment.Api/Dockerfile
@@ -36,3 +38,4 @@ services:
 
 volumes:
   postgres-data:
+    name: assignment-postgres-volume
